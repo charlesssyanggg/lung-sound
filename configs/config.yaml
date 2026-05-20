@@ -1,0 +1,48 @@
+# ============================================================
+# Lung Sound Classification — Configuration File
+# All hyperparameters in one place. Edit here, not in code.
+# ============================================================
+
+data:
+  icbhi_root:  "data/ICBHI_2017/audio_and_txt_files"  # Path to ICBHI wav+txt files
+  sprout_root: "data/SPRSound"                          # Path to SPRSound (optional)
+  sample_rate: 22050         # Unified resampling rate (Hz)
+  duration:    5             # Audio clip length (seconds)
+  n_mels:      128           # Number of Mel filterbanks
+  n_fft:       1024          # FFT window size
+  hop_length:  512           # STFT hop length
+  train_ratio: 0.8           # Patient-wise train/test split
+
+augment:
+  time_mask_ratio: 0.25      # SpecAugment: max fraction of frames to mask
+  # Note: frequency masking is disabled to preserve wheeze's high-freq features
+
+model:
+  backbone:    "resnet18"    # Options: resnet18 | resnet34 | resnet50
+  num_classes: 4             # Normal / Crackle / Wheeze / Both
+  dropout:     [0.4, 0.2]   # Two Dropout layers in classification head
+
+train:
+  epochs:        40
+  batch_size:    64
+  lr:            1.0e-3
+  weight_decay:  1.0e-4
+  grad_clip:     1.0         # Gradient clipping max_norm
+  seed:          42
+  scheduler:     "cosine"    # cosine annealing LR schedule
+  eta_min:       1.0e-5      # Minimum LR for cosine annealing
+
+focal_loss:
+  gamma: 2.0                 # Focusing parameter (0 = standard CE)
+  # Class weights: inverse-frequency, higher = rarer class
+  # ICBHI distribution: Normal 53%, Crackle 27%, Wheeze 13%, Both 7%
+  alpha: [0.15, 0.28, 0.38, 0.19]
+
+eval:
+  icbhi_classes: ["Normal", "Crackle", "Wheeze", "Both"]
+  # ICBHI Score = (macro-SE + macro-SP) / 2
+
+output:
+  save_dir:    "outputs"
+  figures_dir: "figures"
+  log_interval: 5            # Print metrics every N epochs
