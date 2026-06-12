@@ -1,4 +1,4 @@
-# 🫁 Lung Sound Classification with Focal Loss & Cross-Dataset Evaluation
+# 🫁 RespFocalNetFocal Loss for Respiratory Sound Classification with Explainability
 
 > **Biomedical Signal Processing — Course Final Project**  
 > Guangdong University of Technology · Biomedical Engineering
@@ -276,10 +276,10 @@ If you use this code, please cite:
 
 ```bibtex
 @misc{lung_sound_focal_2025,
-  title   = {Lung Sound Classification with Focal Loss and Cross-Dataset Evaluation},
-  author  = {Your Name},
+  title   = {RespFocalNetFocal Loss for Respiratory Sound Classification with Explainability},
+  author  = {Charles},
   year    = {2025},
   school  = {Guangdong University of Technology},
-  note    = {Course Project, Biomedical Signal Processing}
+  note    = {RespFocalNet, Biomedical Signal Processing}
 }
 ```
