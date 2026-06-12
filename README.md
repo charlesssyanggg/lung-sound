@@ -1,4 +1,4 @@
-# 🫁 RespFocalNetFocal Loss for Respiratory Sound Classification with Explainability
+# 🫁 RespFocalNet Focal Loss for Respiratory Sound Classification with Explainability
 
 > **Biomedical Signal Processing — Course Final Project**  
 > Guangdong University of Technology · Biomedical Engineering
